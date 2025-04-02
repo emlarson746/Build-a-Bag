@@ -3,48 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fundraiser</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>ONETrack Int. BUILD-A-BAG</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+        .sidebar {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .item {
+            cursor: pointer;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background: #fff;
+            width: 80%;
+            text-align: center;
+        }
+        .order-summary {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .checkout {
+            background: #42a5f5;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-
-    <h1>Support Our Fundraiser</h1>
-
-    <div id="fundraiser">
-        <div class="item" data-amount="10">
-            <img src="image1.jpg" alt="Donate $10">
-            <p>$10</p>
-            <button class="minus">-</button>
-            <span class="quantity">0</span>
-            <button class="plus">+</button>
+    <h1>ONETrack Int. BUILD-A-BAG</h1>
+    <p>Home | About ONETrack International | Github</p>
+    
+    <div class="container">
+        <!-- Sidebar with item selections -->
+        <div class="sidebar">
+            <div class="item" onclick="addItem(20)">Item 1 ($20)</div>
+            <div class="item" onclick="addItem(40)">Item 2 ($40)</div>
+            <div class="item" onclick="addItem(100)">Item 3 ($100)</div>
+            <div class="item" onclick="addItem(15)">Item 4 ($15)</div>
+            <div class="item" onclick="addItem(500)">Item 5 ($500)</div>
+            <div class="item" onclick="addItem(3)">Item 6 ($3)</div>
         </div>
-        <div class="item" data-amount="25">
-            <img src="image2.jpg" alt="Donate $25">
-            <p>$25</p>
-            <button class="minus">-</button>
-            <span class="quantity">0</span>
-            <button class="plus">+</button>
-        </div>
-        <div class="item" data-amount="50">
-            <img src="image3.jpg" alt="Donate $50">
-            <p>$50</p>
-            <button class="minus">-</button>
-            <span class="quantity">0</span>
-            <button class="plus">+</button>
+        
+        <!-- Order Summary and Checkout -->
+        <div class="order-summary">
+            <h3>Order Total: $<span id="total">0</span></h3>
+            <button class="checkout" onclick="checkout()">Checkout (Chuffed)</button>
         </div>
     </div>
-
-    <p>Total Donation: $<span id="total">0</span></p>
-    <button id="donate-btn">Donate</button>
-
-    <div id="payment-options" style="display: none;">
-        <p>Select Payment Method:</p>
-        <button id="paypal-btn">PayPal</button>
-        <button id="venmo-btn">Venmo</button>
-        <button id="cashapp-btn">CashApp</button>
-    </div>
-
-    <script src="script.js"></script>
-
+    
+    <script>
+        let total = 0;
+        function addItem(amount) {
+            total += amount;
+            document.getElementById("total").innerText = total;
+        }
+        function checkout() {
+            if (total === 0) {
+                alert("Please select at least one item to donate.");
+                return;
+            }
+            const chuffedCampaignId = "your-chuffed-campaign-id"; // Replace with actual ID
+            window.location.href = `https://chuffed.org/pay?campaign=${chuffedCampaignId}&amount=${total}`;
+        }
+    </script>
 </body>
 </html>
