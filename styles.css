@@ -1,67 +1,62 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
     padding: 20px;
 }
 
-#fundraiser {
+.sidebar {
+    background: #e3f2fd;
+    padding: 20px;
+    border-radius: 10px;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .item {
-    text-align: center;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    width: 150px;
-}
-
-img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    display: block;
-    margin: 0 auto;
-}
-
-button {
-    font-size: 18px;
-    padding: 5px 10px;
-    margin: 5px;
     cursor: pointer;
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid #ccc;
+    background: #fff;
+    width: 80%;
+    text-align: center;
+    font-size: 18px;
+    transition: background 0.3s ease;
+}
+
+.item:hover {
+    background: #bbdefb;
+}
+
+.order-summary {
+    background: #e3f2fd;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.checkout {
+    background: #42a5f5;
+    color: white;
+    padding: 15px 30px;
     border: none;
+    cursor: pointer;
+    font-size: 18px;
     border-radius: 5px;
+    margin-top: 15px;
+    transition: background 0.3s ease;
 }
 
-.plus {
-    background-color: green;
-    color: white;
-}
-
-.minus {
-    background-color: red;
-    color: white;
-}
-
-#donate-btn {
-    background-color: blue;
-    color: white;
-    padding: 10px 20px;
-    font-size: 20px;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-#payment-options {
-    margin-top: 20px;
-}
-
-#payment-options button {
-    background-color: black;
-    color: white;
-    margin: 5px;
-    padding: 10px 15px;
+.checkout:hover {
+    background: #1e88e5;
 }
