@@ -13,7 +13,7 @@ function removeItem(amount) {
 }
 
 function updateTotal() {
-    document.getElementById("total").innerText = total;
+    document.getElementById("total").innerText = `$${total.toFixed(2)}`;
 }
 
 function checkout() {
