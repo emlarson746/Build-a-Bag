@@ -74,6 +74,10 @@
             font-size: 16px;
             border-radius: 5px;
         }
+        .order-items {
+            list-style-type: none;
+            padding: 0;
+        }
     </style>
 </head>
 <body>
@@ -90,23 +94,23 @@
         <div class="sidebar">
             <div class="item">Item 1 ($20)
                 <div class="controls">
-                    <button class="control-btn remove-btn" onclick="updateItem(20, -1)">-</button>
+                    <button class="control-btn remove-btn" onclick="updateItem(20, 'Item 1', -1)">-</button>
                     <span class="count-box" id="count-20">0</span>
-                    <button class="control-btn add-btn" onclick="updateItem(20, 1)">+</button>
+                    <button class="control-btn add-btn" onclick="updateItem(20, 'Item 1', 1)">+</button>
                 </div>
             </div>
             <div class="item">Item 2 ($40)
                 <div class="controls">
-                    <button class="control-btn remove-btn" onclick="updateItem(40, -1)">-</button>
+                    <button class="control-btn remove-btn" onclick="updateItem(40, 'Item 2', -1)">-</button>
                     <span class="count-box" id="count-40">0</span>
-                    <button class="control-btn add-btn" onclick="updateItem(40, 1)">+</button>
+                    <button class="control-btn add-btn" onclick="updateItem(40, 'Item 2', 1)">+</button>
                 </div>
             </div>
             <div class="item">Item 3 ($100)
                 <div class="controls">
-                    <button class="control-btn remove-btn" onclick="updateItem(100, -1)">-</button>
+                    <button class="control-btn remove-btn" onclick="updateItem(100, 'Item 3', -1)">-</button>
                     <span class="count-box" id="count-100">0</span>
-                    <button class="control-btn add-btn" onclick="updateItem(100, 1)">+</button>
+                    <button class="control-btn add-btn" onclick="updateItem(100, 'Item 3', 1)">+</button>
                 </div>
             </div>
         </div>
@@ -114,6 +118,7 @@
         <!-- Order Summary and Checkout -->
         <div class="order-summary">
             <h3>Order Total: $<span id="total">0</span></h3>
+            <ul class="order-items" id="order-items"></ul>
             <button class="checkout" onclick="checkout()">Checkout (Chuffed)</button>
         </div>
     </div>
@@ -121,13 +126,31 @@
     <script>
         let total = 0;
         let itemCounts = { 20: 0, 40: 0, 100: 0 };
+        let orderList = {};
         
-        function updateItem(amount, change) {
+        function updateItem(amount, name, change) {
             if (itemCounts[amount] + change >= 0) {
                 itemCounts[amount] += change;
                 total += amount * change;
                 document.getElementById("count-" + amount).innerText = itemCounts[amount];
                 document.getElementById("total").innerText = total;
+                
+                if (itemCounts[amount] > 0) {
+                    orderList[name] = `$${amount} x ${itemCounts[amount]}`;
+                } else {
+                    delete orderList[name];
+                }
+                updateOrderList();
+            }
+        }
+        
+        function updateOrderList() {
+            const orderItemsElement = document.getElementById("order-items");
+            orderItemsElement.innerHTML = "";
+            for (let item in orderList) {
+                let li = document.createElement("li");
+                li.innerText = `${item}: ${orderList[item]}`;
+                orderItemsElement.appendChild(li);
             }
         }
         
