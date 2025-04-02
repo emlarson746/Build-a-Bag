@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ONETrack Int. BUILD-A-BAG</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,13 +24,40 @@
             align-items: center;
         }
         .item {
-            cursor: pointer;
             margin: 10px 0;
             padding: 10px;
             border: 1px solid #ccc;
             background: #fff;
             width: 80%;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .controls {
+            display: flex;
+            align-items: center;
+        }
+        .control-btn {
+            width: 30px;
+            height: 30px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 0 5px;
+        }
+        .remove-btn {
+            background: red;
+            color: white;
+        }
+        .add-btn {
+            background: green;
+            color: white;
+        }
+        .count-box {
+            width: 40px;
+            text-align: center;
+            font-size: 16px;
         }
         .order-summary {
             background: #e3f2fd;
@@ -52,17 +78,37 @@
 </head>
 <body>
     <h1>ONETrack Int. BUILD-A-BAG</h1>
-    <p>Home | About ONETrack International | Github</p>
+    <p>
+        <a href="index.html">Home</a> |
+        <a href="https://onetrackinternational.org/" target="_blank">About ONETrack International</a> |
+        <a href="about.html">About This Project</a> |
+        <a href="https://github.com/emlarson746/Build-a-Bag" target="_blank">Github</a>
+    </p>
     
     <div class="container">
         <!-- Sidebar with item selections -->
         <div class="sidebar">
-            <div class="item" onclick="addItem(20)">Item 1 ($20)</div>
-            <div class="item" onclick="addItem(40)">Item 2 ($40)</div>
-            <div class="item" onclick="addItem(100)">Item 3 ($100)</div>
-            <div class="item" onclick="addItem(15)">Item 4 ($15)</div>
-            <div class="item" onclick="addItem(500)">Item 5 ($500)</div>
-            <div class="item" onclick="addItem(3)">Item 6 ($3)</div>
+            <div class="item">Item 1 ($20)
+                <div class="controls">
+                    <button class="control-btn remove-btn" onclick="updateItem(20, -1)">-</button>
+                    <span class="count-box" id="count-20">0</span>
+                    <button class="control-btn add-btn" onclick="updateItem(20, 1)">+</button>
+                </div>
+            </div>
+            <div class="item">Item 2 ($40)
+                <div class="controls">
+                    <button class="control-btn remove-btn" onclick="updateItem(40, -1)">-</button>
+                    <span class="count-box" id="count-40">0</span>
+                    <button class="control-btn add-btn" onclick="updateItem(40, 1)">+</button>
+                </div>
+            </div>
+            <div class="item">Item 3 ($100)
+                <div class="controls">
+                    <button class="control-btn remove-btn" onclick="updateItem(100, -1)">-</button>
+                    <span class="count-box" id="count-100">0</span>
+                    <button class="control-btn add-btn" onclick="updateItem(100, 1)">+</button>
+                </div>
+            </div>
         </div>
         
         <!-- Order Summary and Checkout -->
@@ -74,10 +120,17 @@
     
     <script>
         let total = 0;
-        function addItem(amount) {
-            total += amount;
-            document.getElementById("total").innerText = total;
+        let itemCounts = { 20: 0, 40: 0, 100: 0 };
+        
+        function updateItem(amount, change) {
+            if (itemCounts[amount] + change >= 0) {
+                itemCounts[amount] += change;
+                total += amount * change;
+                document.getElementById("count-" + amount).innerText = itemCounts[amount];
+                document.getElementById("total").innerText = total;
+            }
         }
+        
         function checkout() {
             if (total === 0) {
                 alert("Please select at least one item to donate.");
@@ -87,6 +140,5 @@
             window.location.href = `https://chuffed.org/pay?campaign=${chuffedCampaignId}&amount=${total}`;
         }
     </script>
-    <script src="script.js"></script>
 </body>
 </html>
