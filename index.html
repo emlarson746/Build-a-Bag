@@ -4,44 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ONETrack Int. BUILD-A-BAG</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="scripts.js" defer></script>
 </head>
 <body>
-    <h1>ONETrack Int. BUILD-A-BAG</h1>
-    <p>
-        <a href="index.html">Home</a> |
-        <a href="https://onetrackinternational.org/" target="_blank">About ONETrack International</a> |
-        <a href="about.html">About This Project</a> |
-        <a href="https://github.com/emlarson746/Build-a-Bag" target="_blank">Github</a>
-    </p>
+    <header>
+        <h1>ONETrack Int. BUILD-A-BAG</h1>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="https://onetrackinternational.org/" target="_blank">About ONETrack International</a> |
+            <a href="about.html">About This Project</a> |
+            <a href="https://github.com/emlarson746/Build-a-Bag" target="_blank">Github</a>
+        </nav>
+    </header>
 
     <div class="container">
         <!-- Left Sidebar with draggable items -->
         <div class="sidebar">
-            <div class="item" draggable="true" ondragstart="drag(event)" data-amount="26" data-name="Notebooks">
+            <div class="item" draggable="true" ondragstart="drag(event)" data-price="26" data-name="Notebooks">
                 <img src="Build-a-Bag/images/notebooks.png" alt="Notebooks">
-                <p>Notebooks</p>
+                <p>Notebooks ($26)</p>
             </div>
-            <div class="item" draggable="true" ondragstart="drag(event)" data-amount="7" data-name="Box of Pens">
-                <img src="Build-a-Bag/images/pens.png" alt="Box of Pens">
-                <p>Box of Pens</p>
+            <div class="item" draggable="true" ondragstart="drag(event)" data-price="7" data-name="Pens">
+                <img src="Build-a-Bag/images/pens.png" alt="Pens">
+                <p>Pens ($7)</p>
             </div>
-            <div class="item" draggable="true" ondragstart="drag(event)" data-amount="12" data-name="Textbook">
+            <div class="item" draggable="true" ondragstart="drag(event)" data-price="12" data-name="Textbook">
                 <img src="Build-a-Bag/images/textbook.png" alt="Textbook">
-                <p>Textbook</p>
+                <p>Textbook ($12)</p>
             </div>
-            <div class="item" draggable="true" ondragstart="drag(event)" data-amount="100" data-name="Tuition">
+            <div class="item" draggable="true" ondragstart="drag(event)" data-price="25" data-name="Uniform">
+                <img src="Build-a-Bag/images/uniform.png" alt="Uniform">
+                <p>Uniform ($25)</p>
+            </div>
+            <div class="item" draggable="true" ondragstart="drag(event)" data-price="100" data-name="Tuition">
                 <img src="Build-a-Bag/images/tuition.png" alt="Tuition">
-                <p>Tuition</p>
-            </div>
-            <div class="item" draggable="true" ondragstart="drag(event)" data-amount="25" data-name="School Uniform">
-                <img src="Build-a-Bag/images/uniform.png" alt="School Uniform">
-                <p>School Uniform</p>
+                <p>Tuition ($100)</p>
             </div>
         </div>
 
-        <!-- Middle section with backpack image -->
+        <!-- Middle section with backpack image (Drop Area) -->
         <div class="bag-area" ondrop="drop(event)" ondragover="allowDrop(event)">
             <img src="Build-a-Bag/images/backpack.png" alt="Backpack">
         </div>
