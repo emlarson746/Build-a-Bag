@@ -1,92 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
-    <script src="scripts.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ONETrack Int. BUILD-A-BAG</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-            padding: 20px;
-        }
-        .sidebar {
-            background: #e3f2fd;
-            padding: 20px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .item {
-            margin: 10px 0;
-            padding: 10px;
-            background: #fff;
-            width: 100px;
-            text-align: center;
-            cursor: grab;
-        }
-        .item img {
-            width: 100%;
-            height: auto;
-        }
-        .order-summary {
-            background: #e3f2fd;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .checkout {
-            background: #42a5f5;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-        .order-items {
-            list-style-type: none;
-            padding: 0;
-        }
-        .bag-area {
-            border: 2px dashed #42a5f5;
-            border-radius: 10px;
-            padding: 20px;
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f0f8ff;
-        }
-        .bag-area img {
-            max-width: 150px;
-            opacity: 0.5;
-        }
-        .control-btn {
-            width: 30px;
-            height: 30px;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            margin: 0 5px;
-        }
-        .remove-btn {
-            background: red;
-            color: white;
-        }
-        .add-btn {
-            background: green;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts.js" defer></script>
 </head>
 <body>
     <h1>ONETrack Int. BUILD-A-BAG</h1>
@@ -126,70 +45,5 @@
             <button class="checkout" onclick="checkout()">Checkout (Chuffed)</button>
         </div>
     </div>
-
-    <script>
-        let total = 0;
-        let itemCounts = {};
-        let orderList = {};
-
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
-
-        function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.getAttribute("data-name") + "," + ev.target.getAttribute("data-amount"));
-        }
-
-        function drop(ev) {
-            ev.preventDefault();
-            const data = ev.dataTransfer.getData("text").split(",");
-            const name = data[0];
-            const amount = parseInt(data[1]);
-
-            if (!itemCounts[name]) itemCounts[name] = 0;
-            itemCounts[name] += 1;
-            total += amount;
-            document.getElementById("total").innerText = total;
-            orderList[name] = `$${amount} x ${itemCounts[name]}`;
-            updateOrderList();
-        }
-
-        function updateOrderList() {
-            const orderItemsElement = document.getElementById("order-items");
-            orderItemsElement.innerHTML = "";
-            for (let item in orderList) {
-                let li = document.createElement("li");
-                li.innerHTML = `${item}: ${orderList[item]} <br>
-                    <button class='control-btn remove-btn' onclick="modifyItem('${item}', -1)">-</button>
-                    <button class='control-btn add-btn' onclick="modifyItem('${item}', 1)">+</button>`;
-                orderItemsElement.appendChild(li);
-            }
-        }
-
-        function modifyItem(name, change) {
-    const amount = parseInt(orderList[name].split(" x ")[0].replace("$", ""));
-    itemCounts[name] += change;
-    total += amount * change;
-
-    if (itemCounts[name] <= 0) {
-        delete itemCounts[name];
-        delete orderList[name];
-    } else {
-        orderList[name] = `$${amount} x ${itemCounts[name]}`;
-    }
-
-    document.getElementById("total").innerText = total;
-    updateOrderList();
-}
-
-        function checkout() {
-            if (total === 0) {
-                alert("Please select at least one item to donate.");
-                return;
-            }
-            const chuffedCampaignId = "your-chuffed-campaign-id"; // Replace with actual ID
-            window.location.href = `https://chuffed.org/pay?campaign=${chuffedCampaignId}&amount=${total}`;
-        }
-    </script>
 </body>
 </html>
