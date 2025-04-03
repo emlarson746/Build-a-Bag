@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ONETrack International BUILD-A-BAG</title>
+    <title>ONETrack Int. BUILD-A-BAG</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,7 +11,7 @@
         }
         .container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 20px;
             padding: 20px;
         }
@@ -26,38 +26,14 @@
         .item {
             margin: 10px 0;
             padding: 10px;
-            border: 1px solid #ccc;
             background: #fff;
-            width: 80%;
+            width: 100px;
             text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            cursor: grab;
         }
-        .controls {
-            display: flex;
-            align-items: center;
-        }
-        .control-btn {
-            width: 30px;
-            height: 30px;
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
-            margin: 0 5px;
-        }
-        .remove-btn {
-            background: red;
-            color: white;
-        }
-        .add-btn {
-            background: green;
-            color: white;
-        }
-        .count-box {
-            width: 40px;
-            text-align: center;
-            font-size: 16px;
+        .item img {
+            width: 100%;
+            height: auto;
         }
         .order-summary {
             background: #e3f2fd;
@@ -78,6 +54,36 @@
             list-style-type: none;
             padding: 0;
         }
+        .bag-area {
+            border: 2px dashed #42a5f5;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f8ff;
+        }
+        .bag-area img {
+            max-width: 150px;
+            opacity: 0.5;
+        }
+        .control-btn {
+            width: 30px;
+            height: 30px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 0 5px;
+        }
+        .remove-btn {
+            background: red;
+            color: white;
+        }
+        .add-btn {
+            background: green;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -88,93 +94,92 @@
         <a href="about.html">About This Project</a> |
         <a href="https://github.com/emlarson746/Build-a-Bag" target="_blank">Github</a>
     </p>
-    
+
     <div class="container">
-        <!-- Sidebar with item selections -->
+        <!-- Left Sidebar with draggable items -->
         <div class="sidebar">
-            <div class="item">Box of pens, 60 ct. ($7.00)
-                <div class="controls">
-                    <button class="control-btn remove-btn" onclick="updateItem(7, 'Box of Pens', -1)">-</button>
-                    <span class="count-box" id="count-20">0</span>
-                    <button class="control-btn add-btn" onclick="updateItem(7, 'Box of Pens', 1)">+</button>
-                </div>
+            <div class="item" draggable="true" ondragstart="drag(event)" data-amount="7" data-name="Box of Pens">
+                <img src="pen.jpg" alt="Box of Pens">
+                <p>placeholder</p>
             </div>
-            <div class="item">Textbook ($12.00)
-                <div class="controls">
-                    <button class="control-btn remove-btn" onclick="updateItem(40, 'Item 2', -1)">-</button>
-                    <span class="count-box" id="count-40">0</span>
-                    <button class="control-btn add-btn" onclick="updateItem(40, 'Item 2', 1)">+</button>
-                </div>
+            <div class="item" draggable="true" ondragstart="drag(event)" data-amount="12" data-name="Textbook">
+                <img src="textbook.jpg" alt="Textbook">
+                <p>placeholder</p>
             </div>
-            <div class="item">School uniform ($25.00)
-                <div class="controls">
-                    <button class="control-btn remove-btn" onclick="updateItem(25, 'School uniform', -1)">-</button>
-                    <span class="count-box" id="count-100">0</span>
-                    <button class="control-btn add-btn" onclick="updateItem(25, 'School uniform', 1)">+</button>
-                </div>
-            </div>
-             <div class="item">College ruled notebooks, 12 ct. ($26.00)
-                <div class="controls">
-                    <button class="control-btn remove-btn" onclick="updateItem(26, 'College ruled notebooks, 12-pack', -1)">-</button>
-                    <span class="count-box" id="count-100">0</span>
-                    <button class="control-btn add-btn" onclick="updateItem(26, 'College ruled notebooks, 12-pack', 1)">+</button>
-                </div>
-            </div>
-             <div class="item">Backpack ($30.00)
-                <div class="controls">
-                    <button class="control-btn remove-btn" onclick="updateItem(30, 'Backpack', -1)">-</button>
-                    <span class="count-box" id="count-100">0</span>
-                    <button class="control-btn add-btn" onclick="updateItem(30, 'Backpack', 1)">+</button>
-                </div>
-            </div>
-             <div class="item">School fees, 1 year ($100.00)
-                <div class="controls">
-                    <button class="control-btn remove-btn" onclick="updateItem(100, 'School fees, one year', -1)">-</button>
-                    <span class="count-box" id="count-100">0</span>
-                    <button class="control-btn add-btn" onclick="updateItem(100, 'School fees, one year', 1)">+</button>
-                </div>
+            <div class="item" draggable="true" ondragstart="drag(event)" data-amount="25" data-name="School Uniform">
+                <img src="uniform.jpg" alt="School Uniform">
+                <p>placeholder</p>
             </div>
         </div>
-        
-        <!-- Order Summary and Checkout -->
+
+        <!-- Middle section with backpack image -->
+        <div class="bag-area" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img src="backpack.png" alt="Backpack">
+        </div>
+
+        <!-- Right Sidebar Order Summary -->
         <div class="order-summary">
             <h3>Order Total: $<span id="total">0</span></h3>
             <ul class="order-items" id="order-items"></ul>
             <button class="checkout" onclick="checkout()">Checkout (Chuffed)</button>
         </div>
     </div>
-    
+
     <script>
         let total = 0;
-        let itemCounts = { 20: 0, 40: 0, 100: 0 };
+        let itemCounts = {};
         let orderList = {};
-        
-        function updateItem(amount, name, change) {
-            if (itemCounts[amount] + change >= 0) {
-                itemCounts[amount] += change;
-                total += amount * change;
-                document.getElementById("count-" + amount).innerText = itemCounts[amount];
-                document.getElementById("total").innerText = total;
-                
-                if (itemCounts[amount] > 0) {
-                    orderList[name] = `$${amount} x ${itemCounts[amount]}`;
-                } else {
-                    delete orderList[name];
-                }
-                updateOrderList();
-            }
+
+        function allowDrop(ev) {
+            ev.preventDefault();
         }
-        
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.getAttribute("data-name") + "," + ev.target.getAttribute("data-amount"));
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const data = ev.dataTransfer.getData("text").split(",");
+            const name = data[0];
+            const amount = parseInt(data[1]);
+
+            if (!itemCounts[name]) itemCounts[name] = 0;
+            itemCounts[name] += 1;
+            total += amount;
+            document.getElementById("total").innerText = total;
+            orderList[name] = `$${amount} x ${itemCounts[name]}`;
+            updateOrderList();
+        }
+
         function updateOrderList() {
             const orderItemsElement = document.getElementById("order-items");
             orderItemsElement.innerHTML = "";
             for (let item in orderList) {
                 let li = document.createElement("li");
-                li.innerText = `${item}: ${orderList[item]}`;
+                li.innerHTML = `${item}: ${orderList[item]} <br>
+                    <button class='control-btn remove-btn' onclick="modifyItem('${item}', -1)">-</button>
+                    <button class='control-btn add-btn' onclick="modifyItem('${item}', 1)">+</button>`;
                 orderItemsElement.appendChild(li);
             }
         }
-        
+
+        function modifyItem(name, change) {
+    const amount = parseInt(orderList[name].split(" x ")[0].replace("$", ""));
+    itemCounts[name] += change;
+    total += amount * change;
+
+    if (itemCounts[name] <= 0) {
+        delete itemCounts[name];
+        delete orderList[name];
+    } else {
+        orderList[name] = `$${amount} x ${itemCounts[name]}`;
+    }
+
+    document.getElementById("total").innerText = total;
+    updateOrderList();
+}
+
         function checkout() {
             if (total === 0) {
                 alert("Please select at least one item to donate.");
