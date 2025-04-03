@@ -1,56 +1,64 @@
 let total = 0;
-let orderList = {};
+let cart = {};
 
-// Enable dragging for items
-function drag(event) {
-    event.dataTransfer.setData("text", JSON.stringify({
-        amount: event.target.getAttribute("data-amount"),
-        name: event.target.getAttribute("data-name")
-    }));
-}
-
-// Allow dropping items into the backpack
 function allowDrop(event) {
     event.preventDefault();
 }
 
-// Handle dropping items into the backpack
+function drag(event) {
+    event.dataTransfer.setData("itemData", JSON.stringify({
+        price: event.target.closest(".item").getAttribute("data-price"),
+        name: event.target.closest(".item").getAttribute("data-name")
+    }));
+}
+
 function drop(event) {
     event.preventDefault();
-    let itemData = JSON.parse(event.dataTransfer.getData("text"));
-    let amount = parseInt(itemData.amount);
-    let name = itemData.name;
-
-    // Add item to cart
-    if (!orderList[name]) {
-        orderList[name] = { amount: amount, count: 1 };
+    let itemData = JSON.parse(event.dataTransfer.getData("itemData"));
+    
+    if (!cart[itemData.name]) {
+        cart[itemData.name] = { price: Number(itemData.price), quantity: 1 };
     } else {
-        orderList[name].count += 1;
+        cart[itemData.name].quantity += 1;
     }
 
-    total += amount;
-    updateOrderSummary();
+    updateCart();
 }
 
-// Update order summary display
-function updateOrderSummary() {
-    document.getElementById("total").innerText = total;
+function updateCart() {
     let orderItemsElement = document.getElementById("order-items");
+    let totalElement = document.getElementById("total");
     orderItemsElement.innerHTML = "";
+    total = 0;
 
-    for (let item in orderList) {
-        let li = document.createElement("li");
-        li.innerText = `${item}: $${orderList[item].amount} x ${orderList[item].count}`;
-        orderItemsElement.appendChild(li);
+    for (let item in cart) {
+        total += cart[item].price * cart[item].quantity;
+        
+        let listItem = document.createElement("li");
+        listItem.innerHTML = `${item}: $${cart[item].price} x ${cart[item].quantity} 
+            <button onclick="removeItem('${item}')">-</button>`;
+        orderItemsElement.appendChild(listItem);
+    }
+
+    totalElement.innerText = total;
+}
+
+function removeItem(itemName) {
+    if (cart[itemName]) {
+        cart[itemName].quantity -= 1;
+        if (cart[itemName].quantity <= 0) {
+            delete cart[itemName];
+        }
+        updateCart();
     }
 }
 
-// Redirect to Chuffed checkout
 function checkout() {
     if (total === 0) {
-        alert("Please add items before proceeding to checkout.");
+        alert("Please select at least one item to donate.");
         return;
     }
+    
     const chuffedCampaignId = "your-chuffed-campaign-id"; // Replace with actual ID
     window.location.href = `https://chuffed.org/pay?campaign=${chuffedCampaignId}&amount=${total}`;
 }
