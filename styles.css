@@ -8,8 +8,10 @@ body {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
     padding: 20px;
+    align-items: center;
 }
 
+/* Sidebar Styling */
 .sidebar {
     background: #e3f2fd;
     padding: 20px;
@@ -22,6 +24,7 @@ body {
 .item {
     margin: 10px 0;
     padding: 10px;
+    border: 1px solid #ccc;
     background: #fff;
     width: 100px;
     text-align: center;
@@ -29,10 +32,29 @@ body {
 }
 
 .item img {
-    width: 100%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.bag-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+    height: 300px;
+    border: 2px dashed #aaa;
+}
+
+.bag-area img {
+    width: 150px;
     height: auto;
 }
 
+/* Order Summary Styling */
 .order-summary {
     background: #e3f2fd;
     padding: 20px;
@@ -53,39 +75,4 @@ body {
 .order-items {
     list-style-type: none;
     padding: 0;
-}
-
-.bag-area {
-    border: 2px dashed #42a5f5;
-    border-radius: 10px;
-    padding: 20px;
-    min-height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f0f8ff;
-}
-
-.bag-area img {
-    max-width: 150px;
-    opacity: 0.5;
-}
-
-.control-btn {
-    width: 30px;
-    height: 30px;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    margin: 0 5px;
-}
-
-.remove-btn {
-    background: red;
-    color: white;
-}
-
-.add-btn {
-    background: green;
-    color: white;
 }
