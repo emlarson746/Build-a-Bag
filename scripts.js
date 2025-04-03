@@ -1,60 +1,54 @@
 let total = 0;
-let itemCounts = {};
 let orderList = {};
 
-function allowDrop(ev) {
-    ev.preventDefault();
+// Enable dragging for items
+function drag(event) {
+    event.dataTransfer.setData("text", JSON.stringify({
+        amount: event.target.getAttribute("data-amount"),
+        name: event.target.getAttribute("data-name")
+    }));
 }
 
-function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.getAttribute("data-name") + "," + ev.target.getAttribute("data-amount"));
+// Allow dropping items into the backpack
+function allowDrop(event) {
+    event.preventDefault();
 }
 
-function drop(ev) {
-    ev.preventDefault();
-    const data = ev.dataTransfer.getData("text").split(",");
-    const name = data[0];
-    const amount = parseInt(data[1]);
+// Handle dropping items into the backpack
+function drop(event) {
+    event.preventDefault();
+    let itemData = JSON.parse(event.dataTransfer.getData("text"));
+    let amount = parseInt(itemData.amount);
+    let name = itemData.name;
 
-    if (!itemCounts[name]) itemCounts[name] = 0;
-    itemCounts[name] += 1;
+    // Add item to cart
+    if (!orderList[name]) {
+        orderList[name] = { amount: amount, count: 1 };
+    } else {
+        orderList[name].count += 1;
+    }
+
     total += amount;
-    document.getElementById("total").innerText = total;
-    orderList[name] = `$${amount} x ${itemCounts[name]}`;
-    updateOrderList();
+    updateOrderSummary();
 }
 
-function updateOrderList() {
-    const orderItemsElement = document.getElementById("order-items");
+// Update order summary display
+function updateOrderSummary() {
+    document.getElementById("total").innerText = total;
+    let orderItemsElement = document.getElementById("order-items");
     orderItemsElement.innerHTML = "";
+
     for (let item in orderList) {
         let li = document.createElement("li");
-        li.innerHTML = `${item}: ${orderList[item]} <br>
-            <button class='control-btn remove-btn' onclick="modifyItem('${item}', -1)">-</button>
-            <button class='control-btn add-btn' onclick="modifyItem('${item}', 1)">+</button>`;
+        li.innerText = `${item}: $${orderList[item].amount} x ${orderList[item].count}`;
         orderItemsElement.appendChild(li);
     }
 }
 
-function modifyItem(name, change) {
-    const amount = parseInt(orderList[name].split(" x ")[0].replace("$", ""));
-    itemCounts[name] += change;
-    total += amount * change;
-
-    if (itemCounts[name] <= 0) {
-        delete itemCounts[name];
-        delete orderList[name];
-    } else {
-        orderList[name] = `$${amount} x ${itemCounts[name]}`;
-    }
-
-    document.getElementById("total").innerText = total;
-    updateOrderList();
-}
-
+// Redirect to Chuffed checkout
 function checkout() {
     if (total === 0) {
-        alert("Please select at least one item to donate.");
+        alert("Please add items before proceeding to checkout.");
         return;
     }
     const chuffedCampaignId = "your-chuffed-campaign-id"; // Replace with actual ID
