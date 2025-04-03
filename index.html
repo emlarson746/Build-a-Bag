@@ -19,23 +19,31 @@
     <div class="container">
         <!-- Left Sidebar with draggable items -->
         <div class="sidebar">
+            <div class="item" draggable="true" ondragstart="drag(event)" data-amount="26" data-name="Notebooks">
+                <img src="Build-a-Bag/images/notebooks.png" alt="Notebooks">
+                <p>Notebooks</p>
+            </div>
             <div class="item" draggable="true" ondragstart="drag(event)" data-amount="7" data-name="Box of Pens">
-                <img src="pen.jpg" alt="Box of Pens">
-                <p>placeholder</p>
+                <img src="Build-a-Bag/images/pens.png" alt="Box of Pens">
+                <p>Box of Pens</p>
             </div>
             <div class="item" draggable="true" ondragstart="drag(event)" data-amount="12" data-name="Textbook">
-                <img src="textbook.jpg" alt="Textbook">
-                <p>placeholder</p>
+                <img src="Build-a-Bag/images/textbook.png" alt="Textbook">
+                <p>Textbook</p>
+            </div>
+            <div class="item" draggable="true" ondragstart="drag(event)" data-amount="100" data-name="Tuition">
+                <img src="Build-a-Bag/images/tuition.png" alt="Tuition">
+                <p>Tuition</p>
             </div>
             <div class="item" draggable="true" ondragstart="drag(event)" data-amount="25" data-name="School Uniform">
-                <img src="uniform.jpg" alt="School Uniform">
-                <p>placeholder</p>
+                <img src="Build-a-Bag/images/uniform.png" alt="School Uniform">
+                <p>School Uniform</p>
             </div>
         </div>
 
         <!-- Middle section with backpack image -->
         <div class="bag-area" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <img src="backpack.png" alt="Backpack">
+            <img src="Build-a-Bag/images/backpack.png" alt="Backpack">
         </div>
 
         <!-- Right Sidebar Order Summary -->
