@@ -82,3 +82,20 @@ nav a:hover {
     align-items: center;
     justify-content: center;
     border:
+/* About Page */
+.container.narrow {
+    max-width: 800px;
+    margin: auto;
+    padding: 40px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+.content p {
+    line-height: 1.6;
+    font-size: 18px;
+    color: #444;
+}
+
