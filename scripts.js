@@ -1,64 +1,38 @@
-let total = 0;
-let cart = {};
+document.addEventListener("DOMContentLoaded", function () {
+    let total = 0;
+    const totalDisplay = document.getElementById("total");
+    const orderItems = document.getElementById("order-items");
 
-function allowDrop(event) {
-    event.preventDefault();
-}
-
-function drag(event) {
-    event.dataTransfer.setData("itemData", JSON.stringify({
-        price: event.target.closest(".item").getAttribute("data-price"),
-        name: event.target.closest(".item").getAttribute("data-name")
-    }));
-}
-
-function drop(event) {
-    event.preventDefault();
-    let itemData = JSON.parse(event.dataTransfer.getData("itemData"));
-    
-    if (!cart[itemData.name]) {
-        cart[itemData.name] = { price: Number(itemData.price), quantity: 1 };
-    } else {
-        cart[itemData.name].quantity += 1;
+    function allowDrop(event) {
+        event.preventDefault();
     }
 
-    updateCart();
-}
-
-function updateCart() {
-    let orderItemsElement = document.getElementById("order-items");
-    let totalElement = document.getElementById("total");
-    orderItemsElement.innerHTML = "";
-    total = 0;
-
-    for (let item in cart) {
-        total += cart[item].price * cart[item].quantity;
-        
-        let listItem = document.createElement("li");
-        listItem.innerHTML = `${item}: $${cart[item].price} x ${cart[item].quantity} 
-            <button onclick="removeItem('${item}')">-</button>`;
-        orderItemsElement.appendChild(listItem);
+    function drag(event) {
+        event.dataTransfer.setData("text", event.target.dataset.name);
+        event.dataTransfer.setData("price", event.target.dataset.price);
     }
 
-    totalElement.innerText = total;
-}
+    function drop(event) {
+        event.preventDefault();
+        const itemName = event.dataTransfer.getData("text");
+        const itemPrice = parseFloat(event.dataTransfer.getData("price"));
 
-function removeItem(itemName) {
-    if (cart[itemName]) {
-        cart[itemName].quantity -= 1;
-        if (cart[itemName].quantity <= 0) {
-            delete cart[itemName];
+        if (itemName && itemPrice) {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${itemName} - $${itemPrice.toFixed(2)}`;
+            orderItems.appendChild(listItem);
+
+            total += itemPrice;
+            totalDisplay.textContent = total.toFixed(2);
         }
-        updateCart();
     }
-}
 
-function checkout() {
-    if (total === 0) {
-        alert("Please select at least one item to donate.");
-        return;
+    function checkout() {
+        window.location.href = "https://chuffed.org/project/126668-build-a-bag";
     }
-    
-    const chuffedCampaignId = "your-chuffed-campaign-id"; // Replace with actual ID
-    window.location.href = `https://chuffed.org/pay?campaign=${chuffedCampaignId}&amount=${total}`;
-}
+
+    window.allowDrop = allowDrop;
+    window.drag = drag;
+    window.drop = drop;
+    window.checkout = checkout;
+});
