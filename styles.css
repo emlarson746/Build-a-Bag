@@ -4,8 +4,8 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: #f5f5f5;
-    color: #333;
+    background-color: #f8f9fa;
+    color: #212529;
 }
 
 .container {
@@ -17,18 +17,38 @@ body {
     margin: auto;
 }
 
-/* Left Sidebar Styles */
+/* Header Styles */
+header {
+    background: #004085;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Left Sidebar (Item List) */
 .sidebar {
-    width: 250px;
-    height: 500px;
+    width: 260px;
+    height: 550px;
     overflow-y: auto;
     border-radius: 8px;
-    padding: 10px;
+    padding: 15px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     background: white;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .item {
@@ -37,6 +57,7 @@ body {
     border-radius: 6px;
     background: #ffffff;
     transition: transform 0.2s ease-in-out;
+    cursor: grab;
 }
 
 .item:hover {
@@ -44,9 +65,14 @@ body {
 }
 
 .item img {
-    width: 80px;
+    width: 90px;
     height: auto;
     border-radius: 4px;
+}
+
+.item p {
+    font-size: 14px;
+    margin-top: 5px;
 }
 
 /* Middle Section (Backpack Drop Area) */
@@ -55,45 +81,4 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px dashed #004085;
-    padding: 30px;
-    height: 600px;
-    background-color: #e9ecef;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.bag-area img {
-    max-width: 450px;
-    height: auto;
-}
-
-/* Right Sidebar (Order Summary) */
-.order-summary {
-    width: 250px;
-    border-radius: 8px;
-    padding: 20px;
-    background: white;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.order-items {
-    list-style-type: none;
-    padding: 0;
-}
-
-.checkout {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 12px;
-    cursor: pointer;
-    margin-top: 15px;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-.checkout:hover {
-    background-color: #218838;
-}
+    border:
