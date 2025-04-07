@@ -52,6 +52,9 @@ nav a:hover {
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     user-select: none;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .item:active {
@@ -72,6 +75,11 @@ nav a:hover {
 
 .item:active img {
     transform: scale(0.85);
+}
+
+.item p {
+    margin: 0;
+    font-size: 0.9rem;
 }
 
 .bag-area {
