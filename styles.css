@@ -37,8 +37,9 @@ nav a:hover {
     padding: 1rem;
     border-right: 1px solid #ccc;
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    justify-content: center;
 }
 
 .item {
@@ -50,6 +51,7 @@ nav a:hover {
     cursor: grab;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     user-select: none;
+    width: 100%;
 }
 
 .item:active {
@@ -61,10 +63,15 @@ nav a:hover {
 .item img {
     max-width: 100%;
     height: auto;
-    max-height: 100px;
+    max-height: 90px;
     object-fit: contain;
     margin-bottom: 5px;
     pointer-events: none;
+    transition: transform 0.2s ease;
+}
+
+.item:active img {
+    transform: scale(0.85);
 }
 
 .bag-area {
@@ -77,7 +84,7 @@ nav a:hover {
 }
 
 .bag-area img {
-    max-width: 100%;
+    max-width: 90%;
     height: auto;
     max-height: 550px;
     transition: transform 0.3s ease;
@@ -143,6 +150,9 @@ nav a:hover {
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
 }
 
 .checkout:hover {
