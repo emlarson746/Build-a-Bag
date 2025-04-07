@@ -37,7 +37,7 @@ nav a:hover {
     padding: 1rem;
     border-right: 1px solid #ccc;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 10px;
     justify-content: center;
 }
@@ -61,6 +61,7 @@ nav a:hover {
     transform: scale(0.85);
     cursor: grabbing;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0.8;
 }
 
 .item img {
@@ -80,6 +81,7 @@ nav a:hover {
 .item p {
     margin: 0;
     font-size: 0.9rem;
+    pointer-events: none;
 }
 
 .bag-area {
@@ -89,13 +91,15 @@ nav a:hover {
     justify-content: center;
     background-color: #e5ecf2;
     padding: 1rem;
+    position: relative;
 }
 
 .bag-area img {
-    max-width: 90%;
+    max-width: 100%;
     height: auto;
     max-height: 550px;
     transition: transform 0.3s ease;
+    pointer-events: none;
 }
 
 .order-summary {
