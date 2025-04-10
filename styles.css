@@ -82,6 +82,14 @@ nav a:hover {
     margin: 0;
     font-size: 0.9rem;
     pointer-events: none;
+    font-weight: bold;
+}
+
+.item .price {
+    font-size: 0.85rem;
+    color: #333;
+    margin-top: 3px;
+    pointer-events: none;
 }
 
 .bag-area {
