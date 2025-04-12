@@ -36,7 +36,7 @@ function addToCart(name, price) {
 
   const item = document.createElement("li");
   item.dataset.name = name;
-  item.innerHTML = `${name} x <span class="count">1</span> - $${price.toFixed(2)} `;
+  item.innerHTML = `<strong class="item-name-box">${name}</strong><br><span class="item-description">${getItemDescription(name)}</span><br><span class="item-price">$${price.toFixed(2)}</span> x <span class="count">1</span>`;
 
   const removeBtn = document.createElement("button");
   removeBtn.textContent = "Remove";
@@ -76,3 +76,19 @@ window.addEventListener("DOMContentLoaded", () => {
     item.addEventListener("dragstart", drag);
   });
 });
+
+function getItemDescription(name) {
+  const descriptions = {
+    "Notebooks": "A set of ruled notebooks for daily classwork.",
+    "Pens": "Smooth-writing pens perfect for note-taking.",
+    "Textbook": "A subject-specific textbook to support learning.",
+    "Uniform": "A complete school uniform for one student.",
+    "Tuition": "Covers a month of school tuition fees.",
+    "Backpack": "Durable backpack to carry school supplies.",
+    "Shoes": "Comfortable, sturdy shoes for school use.",
+    "Lunch Box": "A lunch container to keep food fresh.",
+    "Water Bottle": "Reusable bottle for hydration throughout the day.",
+    "Calculator": "Basic calculator to support math education."
+  };
+  return descriptions[name] || "Educational item for student support.";
+}
