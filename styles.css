@@ -1,68 +1,181 @@
-let total = 0;
-
-// Enable drop functionality on the backpack area
-function allowDrop(ev) {
-    ev.preventDefault();
+/* General Reset and Typography */
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-// Handle dragging: transfer item's unique ID instead of full HTML
-function drag(ev) {
-    ev.dataTransfer.setData("text/plain", ev.target.closest(".item").id);
+h1, h2, h3, p {
+  margin: 0;
+  padding: 0.5rem 0;
 }
 
-// Handle dropping item into the backpack area
-function drop(ev) {
-    ev.preventDefault();
-    const itemId = ev.dataTransfer.getData("text/plain");
-    const draggedItem = document.getElementById(itemId);
-
-    if (draggedItem) {
-        const name = draggedItem.getAttribute('data-name');
-        const price = parseFloat(draggedItem.getAttribute('data-price'));
-
-        if (name && !isNaN(price)) {
-            addToCart(name, price);
-        }
-    }
+header {
+  background-color: #005aa7;
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
 }
 
-// Add item to order summary
-function addToCart(name, price) {
-    const list = document.getElementById("order-items");
-    const item = document.createElement("li");
-    item.textContent = `${name} - $${price}`;
-
-    const removeBtn = document.createElement("button");
-    removeBtn.textContent = "Remove";
-    removeBtn.className = "remove-btn";
-    removeBtn.onclick = function () {
-        list.removeChild(item);
-        updateTotal(-price);
-    };
-
-    item.appendChild(removeBtn);
-    list.appendChild(item);
-
-    updateTotal(price);
+nav a {
+  color: #f0f0f0;
+  text-decoration: none;
+  margin: 0 0.5rem;
 }
 
-// Update total amount
-function updateTotal(amount) {
-    total += amount;
-    document.getElementById("total").textContent = total.toFixed(2);
+nav a:hover {
+  text-decoration: underline;
 }
 
-// Checkout button action
-function checkout() {
-    window.open("https://chuffed.org/project/126668-build-a-bag", "_blank");
+.container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
 }
 
-// Assign unique IDs and attach drag listeners on page load
-window.addEventListener("DOMContentLoaded", () => {
-    const items = document.querySelectorAll(".item");
-    items.forEach((item, index) => {
-        item.setAttribute("id", `item-${index}`);
-        item.setAttribute("draggable", "true");
-        item.addEventListener("dragstart", drag);
-    });
-});
+.sidebar {
+  flex: 1;
+  padding: 1rem;
+  border-right: 1px solid #ccc;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+  justify-content: center;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 0.5rem;
+  text-align: center;
+  transition: transform 0.2s;
+  cursor: grab;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.item:active {
+  transform: scale(0.85);
+  cursor: grabbing;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0.8;
+}
+
+.item img {
+  width: 80px;
+  height: auto;
+  pointer-events: none;
+}
+
+.item p {
+  font-weight: bold;
+  margin: 0.4rem 0 0.2rem;
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.item .price {
+  color: #0077cc;
+  font-size: 0.85rem;
+}
+
+.bag-area {
+  flex: 1;
+  text-align: center;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  background-color: #e5ecf2;
+  padding: 1rem;
+  position: relative;
+}
+
+.bag-area img {
+  max-width: 100%;
+  height: auto;
+  max-height: 550px;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+.order-summary {
+  flex: 1;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.order-summary h3 {
+  margin-bottom: 1rem;
+}
+
+.order-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.order-items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem;
+  border-bottom: 1px solid #eee;
+}
+
+.remove-btn {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.remove-btn:hover {
+  background-color: #d9363e;
+}
+
+.checkout {
+  display: block;
+  width: 100%;
+  background-color: #00a86b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.checkout:hover {
+  background-color: #008f5c;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .sidebar {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+  .bag-area img {
+    width: 100%;
+  }
+}
