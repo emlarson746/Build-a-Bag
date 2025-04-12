@@ -39,14 +39,14 @@ nav a:hover {
 
 .sidebar {
   flex: 1;
-  padding: 1rem;
-  border-right: 1px solid #ccc;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 10px;
-  justify-content: center;
   overflow-y: auto;
   max-height: 80vh;
+  padding: 1rem;
+  border-right: 1px solid #ccc;
+  justify-content: center;
 }
 
 .item {
@@ -57,14 +57,14 @@ nav a:hover {
   text-align: center;
   transition: transform 0.2s;
   cursor: grab;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  opacity: 0.8;
 }
 
 .item:active {
   transform: scale(0.85);
   cursor: grabbing;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  opacity: 0.8;
 }
 
 .item img {
@@ -75,7 +75,7 @@ nav a:hover {
 
 .item p {
   font-weight: bold;
-  margin: 0.4rem 0 0.2rem;
+  margin: 0.5rem 0 0.2rem;
   font-size: 0.9rem;
   pointer-events: none;
 }
@@ -89,7 +89,6 @@ nav a:hover {
   flex: 1;
   text-align: center;
   align-self: center;
-  display: flex;
   justify-content: center;
   background-color: #e5ecf2;
   padding: 1rem;
@@ -97,8 +96,8 @@ nav a:hover {
 }
 
 .bag-area img {
-  max-width: 100%;
-  height: auto;
+  width: 80%;
+  max-width: 300px;
   max-height: 550px;
   transition: transform 0.3s ease;
   pointer-events: none;
