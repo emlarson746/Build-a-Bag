@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ONETrack Int. BUILD-A-BAG</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="scripts.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>ONETrack Int. BUILD-A-BAG</h1>
+    <h1>BUILD-A-BAG</h1>
     <nav>
-      <a href="index.html">Home</a> |
-      <a href="https://onetrackinternational.org/" target="_blank">About ONETrack International</a> |
-      <a href="about.html">About This Project</a> |
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
       <a href="https://github.com/emlarson746/Build-a-Bag" target="_blank">Github</a>
     </nav>
   </header>
@@ -21,43 +20,68 @@
   <div class="container">
     <!-- Left Sidebar with draggable items -->
     <div class="sidebar">
-      <div class="item" draggable="true" ondragstart="drag(event)" data-price="26" data-name="Notebooks">
-        <img src="https://raw.githubusercontent.com/emlarson746/Build-a-Bag/main/images/notebooks.png" alt="Notebooks">
+      <div class="item" data-price="26" data-name="Notebooks">
+        <img src="images/notebooks.png" alt="Notebooks" />
         <p>Notebooks</p>
-        <div class="price">$26</div>
+        <p class="price">$26 - For lessons and learning</p>
       </div>
-      <div class="item" draggable="true" ondragstart="drag(event)" data-price="7" data-name="Pens">
-        <img src="https://raw.githubusercontent.com/emlarson746/Build-a-Bag/main/images/pens.png" alt="Pens">
+      <div class="item" data-price="7" data-name="Pens">
+        <img src="images/pens.png" alt="Pens" />
         <p>Pens</p>
-        <div class="price">$7</div>
+        <p class="price">$7 - Tools for creativity</p>
       </div>
-      <div class="item" draggable="true" ondragstart="drag(event)" data-price="12" data-name="Textbook">
-        <img src="https://raw.githubusercontent.com/emlarson746/Build-a-Bag/main/images/textbook.png" alt="Textbook">
+      <div class="item" data-price="12" data-name="Textbook">
+        <img src="images/textbook.png" alt="Textbook" />
         <p>Textbook</p>
-        <div class="price">$12</div>
+        <p class="price">$12 - Knowledge to grow</p>
       </div>
-      <div class="item" draggable="true" ondragstart="drag(event)" data-price="25" data-name="Uniform">
-        <img src="https://raw.githubusercontent.com/emlarson746/Build-a-Bag/main/images/uniform.png" alt="Uniform">
+      <div class="item" data-price="25" data-name="Uniform">
+        <img src="images/uniform.png" alt="Uniform" />
         <p>Uniform</p>
-        <div class="price">$25</div>
+        <p class="price">$25 - Pride in appearance</p>
       </div>
-      <div class="item" draggable="true" ondragstart="drag(event)" data-price="100" data-name="Tuition">
-        <img src="https://raw.githubusercontent.com/emlarson746/Build-a-Bag/main/images/tuition.png" alt="Tuition">
+      <div class="item" data-price="100" data-name="Tuition">
+        <img src="images/tuition.png" alt="Tuition" />
         <p>Tuition</p>
-        <div class="price">$100</div>
+        <p class="price">$100 - A semester of school</p>
+      </div>
+      <div class="item" data-price="15" data-name="Shoes">
+        <img src="images/shoes.png" alt="Shoes" />
+        <p>Shoes</p>
+        <p class="price">$15 - Walking with confidence</p>
+      </div>
+      <div class="item" data-price="8" data-name="Lunch Box">
+        <img src="images/lunchbox.png" alt="Lunch Box" />
+        <p>Lunch Box</p>
+        <p class="price">$8 - Fuel for learning</p>
+      </div>
+      <div class="item" data-price="10" data-name="Backpack">
+        <img src="images/backpack.png" alt="Backpack" />
+        <p>Backpack</p>
+        <p class="price">$10 - Carry dreams forward</p>
+      </div>
+      <div class="item" data-price="5" data-name="Crayons">
+        <img src="images/crayons.png" alt="Crayons" />
+        <p>Crayons</p>
+        <p class="price">$5 - Add color to life</p>
+      </div>
+      <div class="item" data-price="20" data-name="Water Bottle">
+        <img src="images/waterbottle.png" alt="Water Bottle" />
+        <p>Water Bottle</p>
+        <p class="price">$20 - Stay hydrated, stay focused</p>
       </div>
     </div>
 
     <!-- Middle section with backpack image (Drop Area) -->
     <div class="bag-area" ondrop="drop(event)" ondragover="allowDrop(event)">
-      <img src="https://raw.githubusercontent.com/emlarson746/Build-a-Bag/main/images/backpack.png" alt="Backpack">
+      <img src="images/backpack.png" alt="Backpack" />
     </div>
 
     <!-- Right Sidebar Order Summary -->
     <div class="order-summary">
       <h3>Order Total: $<span id="total">0</span></h3>
       <ul class="order-items" id="order-items"></ul>
-      <button class="checkout" onclick="checkout()">Checkout (Chuffed.org)</button>
+      <button class="checkout" onclick="checkout()">Checkout (Chuffed)</button>
     </div>
   </div>
 </body>
