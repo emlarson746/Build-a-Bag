@@ -188,4 +188,9 @@ nav a:hover {
   .order-summary {
     padding-bottom: 2rem;
   }
+ 
+  body {
+  position: relative;
+  overflow-x: hidden;
+  }
 }
