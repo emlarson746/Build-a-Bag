@@ -3,98 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ONETrack Int. BUILD-A-BAG</title>
+  <title>Build-A-Bag</title>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <script src="scripts.js" defer></script>
 </head>
 <body>
+
   <header>
-    <h1>BUILD-A-BAG</h1>
+    <h1>Build-A-Bag</h1>
     <nav>
-      <a href="https://onetrackinternational.org/" target="_blank">ONETrack International</a>
-      <a href="https://github.com/emlarson746/Build-a-Bag" target="_blank">GitHub</a>
+      <a href="#donate">Donate</a>
+      <a href="#about">About</a>
     </nav>
   </header>
 
   <div class="container">
-    <!-- Left Sidebar with draggable items -->
+    <!-- Item Selection Sidebar -->
     <div class="sidebar">
-      <div class="item" data-price="26" data-name="Notebooks">
-        <img src="images/notebooks.png" alt="Notebooks">
-        <div class="item-name-box">Notebooks</div>
-        <div class="item-description">Help a student stay organized and prepared for class.</div>
-        <div class="item-price">$26</div>
+      <!-- Example items, repeat as needed -->
+      <div class="item" data-name="Notebook" data-price="2.50">
+        <img src="icons/notebook.png" alt="Notebook" />
+        <div class="item-name-box">Notebook</div>
+        <div class="item-description">For class notes and doodles.</div>
+        <div class="item-price">$2.50</div>
       </div>
 
-      <div class="item" data-price="7" data-name="Pens">
-        <img src="images/pens.png" alt="Pens">
-        <div class="item-name-box">Pens</div>
-        <div class="item-description">Basic tools for learning that make a big difference.</div>
-        <div class="item-price">$7</div>
+      <div class="item" data-name="Pencils" data-price="1.25">
+        <img src="icons/pencils.png" alt="Pencils" />
+        <div class="item-name-box">Pencils</div>
+        <div class="item-description">Essential writing tools.</div>
+        <div class="item-price">$1.25</div>
       </div>
 
-      <div class="item" data-price="12" data-name="Textbook">
-        <img src="images/textbook.png" alt="Textbook">
-        <div class="item-name-box">Textbook</div>
-        <div class="item-description">A resource for guided learning and in-depth study.</div>
-        <div class="item-price">$12</div>
+      <div class="item" data-name="Erasers" data-price="0.75">
+        <img src="icons/erasers.png" alt="Erasers" />
+        <div class="item-name-box">Erasers</div>
+        <div class="item-description">Fixes little mistakes fast.</div>
+        <div class="item-price">$0.75</div>
       </div>
 
-      <div class="item" data-price="25" data-name="Uniform">
-        <img src="images/uniform.png" alt="Uniform">
-        <div class="item-name-box">Uniform</div>
-        <div class="item-description">School clothing that helps build confidence and inclusion.</div>
-        <div class="item-price">$25</div>
-      </div>
-
-      <div class="item" data-price="100" data-name="Tuition">
-        <img src="images/tuition.png" alt="Tuition">
-        <div class="item-name-box">Tuition</div>
-        <div class="item-description">Cover the cost of a semester of school for a child in need.</div>
-        <div class="item-price">$100</div>
-      </div>
-
-      <div class="item" data-price="18" data-name="Backpack">
-        <img src="images/backpack.png" alt="Backpack">
-        <div class="item-name-box">Backpack</div>
-        <div class="item-description">Essential gear for carrying supplies to and from school.</div>
-        <div class="item-price">$18</div>
-      </div>
-
-      <div class="item" data-price="30" data-name="Water Bottle">
-        <img src="images/waterbottle.png" alt="Water Bottle">
+      <div class="item" data-name="Water Bottle" data-price="3.00">
+        <img src="icons/waterbottle.png" alt="Water Bottle" />
         <div class="item-name-box">Water Bottle</div>
-        <div class="item-description">Keeps kids hydrated throughout the school day.</div>
-        <div class="item-price">$30</div>
+        <div class="item-description">Stay hydrated on the go.</div>
+        <div class="item-price">$3.00</div>
       </div>
 
-      <div class="item" data-price="50" data-name="Lunch Kit">
-        <img src="images/lunchkit.png" alt="Lunch Kit">
-        <div class="item-name-box">Lunch Kit</div>
-        <div class="item-description">Healthy meals fuel healthy minds and bodies.</div>
-        <div class="item-price">$50</div>
+      <div class="item" data-name="Lunch Box" data-price="4.00">
+        <img src="icons/lunchbox.png" alt="Lunch Box" />
+        <div class="item-name-box">Lunch Box</div>
+        <div class="item-description">Keep meals fresh and tasty.</div>
+        <div class="item-price">$4.00</div>
       </div>
 
-      <div class="item" data-price="22" data-name="Calculator">
-        <img src="images/calculator.png" alt="Calculator">
-        <div class="item-name-box">Calculator</div>
-        <div class="item-description">Tools for mastering math and problem solving.</div>
-        <div class="item-price">$22</div>
+      <div class="item" data-name="Backpack" data-price="8.00">
+        <img src="icons/backpack.png" alt="Backpack" />
+        <div class="item-name-box">Backpack</div>
+        <div class="item-description">Carry everything with ease.</div>
+        <div class="item-price">$8.00</div>
+      </div>
+
+      <div class="item" data-name="Markers" data-price="2.25">
+        <img src="icons/markers.png" alt="Markers" />
+        <div class="item-name-box">Markers</div>
+        <div class="item-description">Colorful tools for creativity.</div>
+        <div class="item-price">$2.25</div>
+      </div>
+
+      <div class="item" data-name="Folders" data-price="1.50">
+        <img src="icons/folder.png" alt="Folders" />
+        <div class="item-name-box">Folders</div>
+        <div class="item-description">Keep papers neat and tidy.</div>
+        <div class="item-price">$1.50</div>
+      </div>
+
+      <div class="item" data-name="Glue Stick" data-price="0.99">
+        <img src="icons/gluestick.png" alt="Glue Stick" />
+        <div class="item-name-box">Glue Stick</div>
+        <div class="item-description">Sticky helper for crafts.</div>
+        <div class="item-price">$0.99</div>
       </div>
     </div>
 
-    <!-- Middle section with backpack image (Drop Area) -->
-    <div class="bag-area" ondrop="drop(event)" ondragover="allowDrop(event)">
-      <img src="images/backpack-drop.png" alt="Backpack Drop Area">
+    <!-- Bag Area -->
+    <div class="bag-area">
+      <img src="images/bag.png" alt="School Bag" />
     </div>
 
-    <!-- Right Sidebar Order Summary -->
+    <!-- Order Summary -->
     <div class="order-summary">
-      <h3>Order Total: $<span id="total">0</span></h3>
-      <ul class="order-items" id="order-items"></ul>
-      <button class="checkout" onclick="checkout()">Checkout (Chuffed.org)</button>
+      <h3>Bag Summary</h3>
+      <ul id="order-items"></ul>
+      <p><strong>Total:</strong> $<span id="total">0.00</span></p>
+      <button class="checkout" onclick="checkout()">Donate Now</button>
     </div>
   </div>
+
+  <script src="scripts.js"></script>
 </body>
 </html>
