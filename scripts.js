@@ -46,9 +46,15 @@ function updateTotal(amount) {
   totalElement.textContent = total.toFixed(2);
 }
 
-// Checkout button action
+// Checkout button action - redirect to Chuffed with total
 function checkout() {
-  window.open("https://chuffed.org/project/126668-build-a-bag", "_blank");
+  const total = parseFloat(document.getElementById("total").textContent);
+  if (total <= 0) {
+    alert("Please add items to your bag before checking out.");
+    return;
+  }
+  const url = `https://chuffed.org/donation/new?direct=1&projectId=126668&amount=${total}`;
+  window.open(url, "_blank");
 }
 
 // Animate item into bag and add to cart
