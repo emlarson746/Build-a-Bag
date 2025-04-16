@@ -53,7 +53,7 @@ function checkout() {
     alert("Please add items to your bag before checking out.");
     return;
   }
-  const url = `https://chuffed.org/donation/new?direct=1&projectId=126668&amount=${total}`;
+  const url = `https://chuffed.org/project/126668-build-a-bag/donate/${total}`;
   window.open(url, "_blank");
 }
 
